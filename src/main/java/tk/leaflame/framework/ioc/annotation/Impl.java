@@ -6,12 +6,14 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * inject fields
+ * Specifies the implementation class of the interface
  *
  * @author leaflame
- * @date 2020/3/1 22:11
+ * @date 2020/3/3 12:32
  */
-@Target(ElementType.FIELD)
+@Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface Inject {
+public @interface Impl {
+
+    Class<?> value();
 }

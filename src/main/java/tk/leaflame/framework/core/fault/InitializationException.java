@@ -4,7 +4,8 @@ package tk.leaflame.framework.core.fault;
  * @author leaflame
  * @date 2020/3/3 9:26
  */
-public class InitializationException extends Exception {
+//extends Error or RuntimeException,no need catch
+public class InitializationException extends RuntimeException {
 
     private static final String MESSAGE = "initialization error!";
 

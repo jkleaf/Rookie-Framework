@@ -46,7 +46,7 @@ public class InstanceFactory {
         if (cache.containsKey(cacheKey)) {
             return (T) cache.get(cacheKey);
         }
-        //get impl class configuration from config file
+        //Gets impl class configuration from config file
         String implClassName = ConfigHelper.getString(cacheKey);
         //if impl class configuration does not exist , use default class
         if (StringUtil.isEmpty(implClassName)) {

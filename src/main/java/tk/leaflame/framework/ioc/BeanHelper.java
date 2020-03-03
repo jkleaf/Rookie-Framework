@@ -19,14 +19,15 @@ public final class BeanHelper {
 
     /**
      * Bean Map (mapping bean class and bean instance)
+     * ensure singleton instance
      */
     private static final Map<Class<?>, Object> BEAN_MAP = new HashMap<>();
 
     static {
-        //get classes from base package
+        //Gets all classes from base package
         List<Class<?>> classList = ClassHelper.getClassList();
         classList.forEach(cls -> {
-            //check if specific annotations on the elements
+            // specific annotations on the elements
             if (cls.isAnnotationPresent(Bean.class) ||
                     cls.isAnnotationPresent(Service.class) ||
                     cls.isAnnotationPresent(Action.class) ||
@@ -37,8 +38,7 @@ public final class BeanHelper {
                     //put into bean map
                     BEAN_MAP.put(cls, beanInstance);
                 } catch (InstantiationException | IllegalAccessException e) {
-//                    throw new InitializationException("initial instance error!");
-                    e.printStackTrace();
+                    throw new InitializationException("initial bean instance error!", e);
                 }
             }
         });

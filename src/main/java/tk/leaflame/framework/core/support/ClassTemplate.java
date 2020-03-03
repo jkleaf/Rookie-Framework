@@ -40,13 +40,13 @@ public abstract class ClassTemplate {
     public final List<Class<?>> getClassList() {
         List<Class<?>> classList = new ArrayList<Class<?>>();
         try {
-            //get urls by parsing package name
+            //Gets urls by parsing package name
             Enumeration<URL> urls = ClassUtil.getClassLoader().getResources(packageName.replace(".", "/"));
             //iterate urls
             while (urls.hasMoreElements()) {
                 URL url = urls.nextElement();
                 if (url != null) {
-                    //get protocol (file or jar)
+                    //Gets protocol (file or jar)
                     String protocol = url.getProtocol();
                     if (protocol.equals("file")) { //todo
                         //if int the class packages,do add class
@@ -60,9 +60,9 @@ public abstract class ClassTemplate {
                         while (jarEntries.hasMoreElements()) {
                             JarEntry jarEntry = jarEntries.nextElement();
                             String jarEntryName = jarEntry.getName();
-                            //check if the entry is class
+                            // the entry is class
                             if (jarEntryName.endsWith(".class")) {
-                                //get class name (may be under some packages ("/" should be handled))
+                                //Gets class name (may be under some packages ("/" should be handled))
                                 String className = jarEntryName.substring(0, jarEntryName.lastIndexOf(".")).replace("/", ".");
                                 //directly do add class due to the loop
                                 doAddClass(classList, className);
@@ -80,13 +80,14 @@ public abstract class ClassTemplate {
 
     private void addClass(List<Class<?>> classList, String packagePath, String packageName) {
         try {
-            //gets the class files or folders under the package name path
+            //Gets the class files or folders under the package name path
             File[] files = new File(packagePath).listFiles(f -> (f.isFile() && f.getName().endsWith(".class")) || f.isDirectory());
+            assert files != null;
             //iterate files
             for (File file : files) {
                 String fileName = file.getName();
                 if (file.isFile()) { //is file
-                    //get class file name
+                    //Gets class file name
                     String className = fileName.substring(0, fileName.lastIndexOf("."));
                     if (StringUtil.isNotEmpty(packageName)) {
                         //real package path
@@ -94,12 +95,12 @@ public abstract class ClassTemplate {
                     }
                     doAddClass(classList, className);
                 } else { //is dir
-                    //get sub package path
+                    //Gets sub package path
                     String subPackagePath = fileName;
                     if (StringUtil.isNotEmpty(packagePath)) {
                         subPackagePath = packagePath + "/" + subPackagePath;
                     }
-                    //get sub package name
+                    //Gets sub package name
                     String subPackageName = fileName;
                     if (StringUtil.isNotEmpty(subPackageName)) {
                         subPackageName = packageName + "." + subPackageName;
@@ -122,7 +123,7 @@ public abstract class ClassTemplate {
     private void doAddClass(List<Class<?>> classList, String className) {
         //load class
         Class<?> clz = ClassUtil.loadClass(className, false);
-        //check if class can be added
+        // class can be added
         if (checkAddClass(clz)) {
             //add class
             classList.add(clz);
@@ -130,8 +131,8 @@ public abstract class ClassTemplate {
     }
 
     /**
-     * check if class can be added
-     * differentiate super class and annotation class
+     * Determines if class is able to be added
+     * differentiate super class and annotation class (TO BE {@Override})
      *
      * @param cls
      * @return

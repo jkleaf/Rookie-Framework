@@ -2,6 +2,7 @@ package tk.leaflame.framework.core.impl;
 
 import tk.leaflame.framework.core.ClassScanner;
 import tk.leaflame.framework.core.support.ClassTemplate;
+import tk.leaflame.framework.core.support.SuperClassTemplate;
 
 import java.lang.annotation.Annotation;
 import java.util.List;
@@ -31,6 +32,11 @@ public class DefaultClassScanner implements ClassScanner {
 
     @Override
     public List<Class<?>> getClassListBySuper(String packageName, Class<?> superClass) {
-        return null;
+        return new SuperClassTemplate(packageName, superClass) {
+            @Override
+            public boolean checkAddClass(Class<?> cls) {
+                return superClass.isAssignableFrom(cls) && !superClass.equals(cls); //super class or interface
+            }
+        }.getClassList();
     }
 }

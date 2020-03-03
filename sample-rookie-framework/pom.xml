@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>test-rookie-framework</artifactId>
+    <artifactId>sample-rookie-framework</artifactId>
 
     <dependencies>
         <dependency>

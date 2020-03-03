@@ -24,12 +24,21 @@ public class ClassHelper {
 
     /**
      * get all classes from base package
+     *
      * @return
      */
     public static List<Class<?>> getClassList() {
         return classScanner.getClassList(basePackage);
     }
 
-
+    /**
+     * get the related class that specifies the parent class or interface from base package
+     *
+     * @param superClass
+     * @return
+     */
+    public static List<Class<?>> getClassListBySuper(Class<?> superClass) {
+        return classScanner.getClassListBySuper(basePackage, superClass);
+    }
 
 }
