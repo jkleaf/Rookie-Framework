@@ -14,6 +14,7 @@ public interface ClassScanner {
 
     /**
      * get classes by package name
+     *
      * @param packageName
      * @return
      */
@@ -22,6 +23,7 @@ public interface ClassScanner {
 
     /**
      * get classes by package name and annotation
+     *
      * @param packageName
      * @param annotationClass
      * @return
@@ -31,9 +33,10 @@ public interface ClassScanner {
 
     /**
      * get classes by super package name and super class or interface
+     *
      * @param packageName
      * @param superClass
      * @return
      */
-    List<Class<?>> getClassListBySuper(String packageName,Class<?> superClass);
+    List<Class<?>> getClassListBySuper(String packageName, Class<?> superClass);
 }

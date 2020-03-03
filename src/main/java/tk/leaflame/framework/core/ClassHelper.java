@@ -2,6 +2,8 @@ package tk.leaflame.framework.core;
 
 import tk.leaflame.framework.InstanceFactory;
 
+import java.util.List;
+
 /**
  * Gets the related classes based on the condition
  *
@@ -13,11 +15,21 @@ public class ClassHelper {
     /**
      * get base package from config file
      */
-    private static final String basePackage=ConfigHelper.getString("rookie.framework.app.base_package");
+    private static final String basePackage = ConfigHelper.getString("rookie.framework.app.base_package");
 
     /**
      * get class scanner from instance factory
      */
-    private static final ClassScanner classScanner= InstanceFactory.getClassScanner();
+    private static final ClassScanner classScanner = InstanceFactory.getClassScanner();
+
+    /**
+     * get all classes from base package
+     * @return
+     */
+    public static List<Class<?>> getClassList() {
+        return classScanner.getClassList(basePackage);
+    }
+
+
 
 }

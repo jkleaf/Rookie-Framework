@@ -131,6 +131,7 @@ public abstract class ClassTemplate {
 
     /**
      * check if class can be added
+     * differentiate super class and annotation class
      *
      * @param cls
      * @return

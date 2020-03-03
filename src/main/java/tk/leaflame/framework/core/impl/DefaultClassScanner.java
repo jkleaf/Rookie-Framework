@@ -1,6 +1,7 @@
 package tk.leaflame.framework.core.impl;
 
 import tk.leaflame.framework.core.ClassScanner;
+import tk.leaflame.framework.core.support.ClassTemplate;
 
 import java.lang.annotation.Annotation;
 import java.util.List;
@@ -13,7 +14,14 @@ public class DefaultClassScanner implements ClassScanner {
 
     @Override
     public List<Class<?>> getClassList(String packageName) {
-        return null;
+        return new ClassTemplate(packageName) {
+            @Override
+            public boolean checkAddClass(Class<?> cls) {
+                String clsName = cls.getName();
+                String pkgName = clsName.substring(0, clsName.lastIndexOf("."));
+                return pkgName.startsWith(packageName);
+            }
+        }.getClassList();
     }
 
     @Override
