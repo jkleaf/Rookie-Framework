@@ -1,6 +1,7 @@
 package tk.leaflame.framework.core.impl;
 
 import tk.leaflame.framework.core.ClassScanner;
+import tk.leaflame.framework.core.support.AnnotationClassTemplate;
 import tk.leaflame.framework.core.support.ClassTemplate;
 import tk.leaflame.framework.core.support.SuperClassTemplate;
 
@@ -20,14 +21,19 @@ public class DefaultClassScanner implements ClassScanner {
             public boolean checkAddClass(Class<?> cls) {
                 String clsName = cls.getName();
                 String pkgName = clsName.substring(0, clsName.lastIndexOf("."));
-                return pkgName.startsWith(packageName);
+                return pkgName.startsWith(packageName); //all classes
             }
         }.getClassList();
     }
 
     @Override
     public List<Class<?>> getClassListByAnnotation(String packageName, Class<? extends Annotation> annotationClass) {
-        return null;
+        return new AnnotationClassTemplate(packageName, annotationClass) {
+            @Override
+            public boolean checkAddClass(Class<?> cls) {
+                return cls.isAnnotationPresent(annotationClass); //with annotation on the type element
+            }
+        }.getClassList();
     }
 
     @Override

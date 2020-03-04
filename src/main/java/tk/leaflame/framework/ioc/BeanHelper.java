@@ -4,7 +4,7 @@ import tk.leaflame.framework.aop.annotation.Aspect;
 import tk.leaflame.framework.core.ClassHelper;
 import tk.leaflame.framework.core.fault.InitializationException;
 import tk.leaflame.framework.ioc.annotation.Bean;
-import tk.leaflame.framework.mvc.annotation.Action;
+import tk.leaflame.framework.mvc.annotation.Controller;
 import tk.leaflame.framework.tx.annotation.Service;
 
 import java.util.HashMap;
@@ -30,7 +30,7 @@ public final class BeanHelper {
             // specific annotations on the elements
             if (cls.isAnnotationPresent(Bean.class) ||
                     cls.isAnnotationPresent(Service.class) ||
-                    cls.isAnnotationPresent(Action.class) ||
+                    cls.isAnnotationPresent(Controller.class) ||
                     cls.isAnnotationPresent(Aspect.class)) {
                 try {
                     //create bean instance

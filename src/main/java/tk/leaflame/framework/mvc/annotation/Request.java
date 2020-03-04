@@ -15,9 +15,29 @@ public @interface Request {
 
     @Target(ElementType.METHOD)
     @Retention(RetentionPolicy.RUNTIME)
-    @interface Get{
+    @interface Get {
 
         String value();
     }
 
+    @Target(ElementType.METHOD)
+    @Retention(RetentionPolicy.RUNTIME)
+    @interface Post {
+
+        String value();
+    }
+
+    @Target(ElementType.METHOD)
+    @Retention(RetentionPolicy.RUNTIME)
+    public @interface Put {
+
+        String value();
+    }
+
+    @Target(ElementType.METHOD)
+    @Retention(RetentionPolicy.RUNTIME)
+    public @interface Delete {
+
+        String value();
+    }
 }

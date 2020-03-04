@@ -2,6 +2,7 @@ package tk.leaflame.framework.core;
 
 import tk.leaflame.framework.InstanceFactory;
 
+import java.lang.annotation.Annotation;
 import java.util.List;
 
 /**
@@ -13,17 +14,17 @@ import java.util.List;
 public class ClassHelper {
 
     /**
-     * get base package from config file
+     * Gets base package from config file
      */
     private static final String basePackage = ConfigHelper.getString("rookie.framework.app.base_package");
 
     /**
-     * get class scanner from instance factory
+     * Gets class scanner from instance factory
      */
     private static final ClassScanner classScanner = InstanceFactory.getClassScanner();
 
     /**
-     * get all classes from base package
+     * Gets all classes from base package
      *
      * @return
      */
@@ -32,13 +33,23 @@ public class ClassHelper {
     }
 
     /**
-     * get the related class that specifies the parent class or interface from base package
+     * Gets the related class that specifies the parent class or interface from base package
      *
      * @param superClass
      * @return
      */
     public static List<Class<?>> getClassListBySuper(Class<?> superClass) {
         return classScanner.getClassListBySuper(basePackage, superClass);
+    }
+
+    /**
+     * Gets the related class for the specified annotation from base package
+     *
+     * @param annotationClass
+     * @return
+     */
+    public static List<Class<?>> getClassListByAnnotation(Class<? extends Annotation> annotationClass) {
+        return classScanner.getClassListByAnnotation(basePackage, annotationClass);
     }
 
 }

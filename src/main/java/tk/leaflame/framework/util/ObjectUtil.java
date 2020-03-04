@@ -4,6 +4,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
+ * Object+Reflection tool class
+ *
  * @author leaflame
  * @date 2020/3/1 23:45
  */

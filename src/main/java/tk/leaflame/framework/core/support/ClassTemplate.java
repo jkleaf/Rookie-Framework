@@ -131,7 +131,7 @@ public abstract class ClassTemplate {
     }
 
     /**
-     * Determines if class is able to be added
+     * Determines if class is able to be added (as a filter)
      * differentiate super class and annotation class (TO BE {@Override})
      *
      * @param cls
