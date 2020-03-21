@@ -1,11 +1,10 @@
 package tk.leaflame.framework.aop.annotation;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import java.lang.annotation.*;
 
 /**
+ * 切面注解
+ *
  * @author leaflame
  * @date 2020/3/3 9:07
  */
@@ -13,4 +12,5 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Aspect {
 
+    Class<? extends Annotation> value(); //annotation
 }
