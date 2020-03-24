@@ -13,4 +13,6 @@ import java.lang.annotation.*;
 public @interface Aspect {
 
     Class<? extends Annotation> value(); //annotation
+
+    //TODO other attributes (pkg,cls...)
 }
