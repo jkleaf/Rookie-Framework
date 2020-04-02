@@ -9,6 +9,8 @@ import tk.leaflame.framework.core.ClassHelper;
 import tk.leaflame.framework.core.ClassScanner;
 import tk.leaflame.framework.core.fault.InitializationException;
 import tk.leaflame.framework.ioc.BeanHelper;
+import tk.leaflame.framework.tx.TransactionProxy;
+import tk.leaflame.framework.tx.annotation.Service;
 
 import java.lang.annotation.Annotation;
 import java.util.*;
@@ -49,7 +51,7 @@ public final class AopHelper {
         // 添加相关代理
 
         addAspectProxy(proxyMap);      // 切面代理
-
+        addTransactionProxy(proxyMap); // 事务代理
         return proxyMap;
     }
 
@@ -67,6 +69,12 @@ public final class AopHelper {
                 proxyMap.put(proxyClass, targetClassList);
             }
         }
+    }
+
+    private static void addTransactionProxy(Map<Class<?>, List<Class<?>>> proxyMap) {
+        // 使用 TransactionProxy 代理所有 Service 类
+        List<Class<?>> serviceClassList = ClassHelper.getClassListByAnnotation(Service.class);
+        proxyMap.put(TransactionProxy.class, serviceClassList);
     }
 
     private static List<Class<?>> createTargetClassList(Aspect aspect) throws Exception {
