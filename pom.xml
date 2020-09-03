@@ -69,7 +69,7 @@
             <version>${jackson.version}</version>
         </dependency>
 
-        <!-- Apache Commons -->
+        <!-- Apache Commons JDK扩展包-->
         <dependency>
             <groupId>commons-lang</groupId>
             <artifactId>commons-lang</artifactId>
